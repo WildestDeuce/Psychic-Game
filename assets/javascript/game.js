@@ -22,13 +22,13 @@ document.onkeyup = function (event) {
     function Reset() {
         if (options.indexOf(userGuess) > -1) {
 
-            if (userGuess === computerGuess) {
+            if (userGuess === letterPick) {
                 win++;
                 attempts = 10;
                 letters = [];
             }
 
-            if (userGuess != computerGuess) {
+            if (userGuess != letterPick) {
                 attempts--;
                 letters.push(userGuess);
             }
@@ -39,3 +39,19 @@ document.onkeyup = function (event) {
                 losses++;
                 letters = [];
             }
+
+    //Dispaying to html
+
+    var html =
+
+    "<h1>Psychic Guessing Game</h1>"
+    "<h2>Guess What Letter I'm Thinking Of!</h2>"
+    "<h3>Wins:" + win + "<span id="win"></span></h3>"
+    <h3>Losses:<span id="loss"></span></h3>
+    <h3>Guesses Remaining:"<span id="attempts"></span></h3>
+    <h3>Guesses So Far:<span id="letterPick"></span></h3>
+
+
+
+console.log(userGuess)
+console.log(letterPick)
