@@ -5,60 +5,37 @@ var attempts = 10;
 var letters = ("abcdefghijklmnopqrstuvwxyz").split("");
 
 
-
 // How the computer will select its letter?
 
+var letterPick = letters[Math.floor(Math.random() * letters.length)];
 
-var letterPick =letters[Math.floor(Math.random()*letters.length)];
-
-console.log(letters)
-console.log(letterPick)
+console.log(letters);
+console.log(letterPick);
 
 // How will the user select its letter?
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
 
     var userGuess = event.key;
 
- // Reset the game after a win/loss
- function Reset() {
-    if (attempts > 0) {
-        wins++
-    }
-    else if (attempts == 0) {
-        losses++
-    }
+    // Reset the game after a win/loss
+    function Reset() {
+        if (options.indexOf(userGuess) > -1) {
 
-    $("#name").empty();
-    name = names[Math.floor(Math.random() * names.length)];
+            if (userGuess === computerGuess) {
+                win++;
+                attempts = 10;
+                letters = [];
+            }
 
-    for (var i = 0; i < letters.length; i++) {
-        var letterBtn = $("<button>");
-        letterBtn.addClass("letter-button letter letter-button-color");
-        letterBtn.attr("id", alphabet[i]);
-        letterBtn.text(alphabet[i]);
-        $("#buttons").append(letterBtn);
-    }
+            if (userGuess != computerGuess) {
+                attempts--;
+                letters.push(userGuess);
+            }
 
-    $(".letter-button").on("click", clickMethod);
+            if (attempts === 0) {
 
-    for (var i = 0; i < name.length; i++) {
-        var correct = $("<p>");
-        correct.attr("id", i);
-        correct.text(" _ ");
-        $("#name").append(correct);
-    }
-
-   //guessesRemaining = 6;
-    lettersRemaining = name.length; {
-
-    console.log("Correct Name: " + name);
-    console.log("Remaining Guesses: " + guessesRemaining);
-    console.log("Remaining Letters: " + lettersRemaining);
-    console.log("Wins: " + wins);
-    console.log("Losses: " + losses);
-    console.log("");
-}
-
-Reset();
- });
+               attempts = 10;
+                losses++;
+                letters = [];
+            }
