@@ -47,10 +47,11 @@ document.onkeyup = function (event) {
     "<h1>Psychic Guessing Game</h1>"
     "<h2>Guess What Letter I'm Thinking Of!</h2>"
     "<h3>Wins:" + win + "<span id="win"></span></h3>"
-    <h3>Losses:<span id="loss"></span></h3>
-    <h3>Guesses Remaining:"<span id="attempts"></span></h3>
-    <h3>Guesses So Far:<span id="letterPick"></span></h3>
+    "<h3>Losses:" + loss+ "<span id="loss"></span></h3>"
+    "<h3>Guesses Remaining:" + attempts + "<span id="attempts"></span></h3>"
+    "<h3>Guesses So Far:" + letterPick + "<span id="letterPick"></span></h3>"
 
+    //document.getElementbyId(game).innerHTML = html or document.querySelector("#game").innerHTML = html;
 
 
 console.log(userGuess)
