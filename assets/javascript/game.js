@@ -7,53 +7,60 @@ var attemptArray = [];
 
 // How the computer will select its letter?
 
-var letterPick = letters[Math.floor(Math.random() * letters.length)];
+var letterPick;
+var userGuess;
 
-console.log(letters);
-console.log(letterPick);
+function computerPick() {
+
+    if (attempts = 10) {
+        letterPick = letters[Math.floor(Math.random() * letters.length)];
+    }
+}
 
 // How will the user select its letter?
 
 document.onkeyup = function (event) {
+    userGuess = event.key;
+    console.log("computer: " + letterPick);
 
-    var userGuess = event.key;
+    console.log(letters);
+    console.log(userGuess);
+
 
     if (letters.indexOf(userGuess) > -1) {
 
         // Reset the game after a win/loss
+        Reset()
         function Reset() {
-            if (attemptArray.indexOf(userGuess) > -1) {
-
-                if (userGuess === letterPick) {
-                    win++;
-                    attempts = 10;
-                    attemptArray = []
-                }
-
-                if (userGuess != letterPick) {
-                    attempts--;
-                    attemptArray.push(userGuess);
-                }
-
-                if (attempts === 0) {
-
-                    attempts = 10;
-                    losses++;
-                    attemptArray = [];
-                }
-
+            if (attempts < 1) {
+                attempts = 10;
+                computerPick()
+                loss++;
+                attemptArray = [];
+            }
+            // if (attemptArray.indexOf(userGuess) > -1) {
+            else if (userGuess != letterPick) {
+                attempts--;
+                attemptArray.push(userGuess);
+                console.log(attemptArray);
             }
 
-            //Dispaying to html
+            else if (userGuess === letterPick) {
+                win++;
+                computerPick()
+                attempts = 10;
+                attemptArray = []
+            }
+
+
 
         }
-        document.getElementById("win").textContent = win;
-        document.getElementById("loss").textContent = loss;
-        document.getElementById("attempts").textContent = attempts;
-        document.getElementById("letterPick").textContent = letterPick;
 
-        console.log(userGuess);
-        console.log(letterPick);
-
+        //Dispaying to html
     }
+    document.getElementById("win").textContent = win;
+    document.getElementById("loss").textContent = loss;
+    document.getElementById("attempts").textContent = attempts;
+    document.getElementById("userGuess").textContent = attemptArray;
 }
+// }
