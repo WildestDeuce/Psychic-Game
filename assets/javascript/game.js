@@ -63,4 +63,4 @@ document.onkeyup = function (event) {
     document.getElementById("attempts").textContent = attempts;
     document.getElementById("userGuess").textContent = attemptArray;
 }
-// }
+
